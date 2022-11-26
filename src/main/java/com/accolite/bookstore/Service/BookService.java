@@ -20,8 +20,8 @@ public class BookService {
         return this.bookRepo.findAll();
     };
 
-    public Book getBookById(long bookId){
-        Optional<Book> bookObj = this.bookRepo.findById(bookId);
+    public Book getBookByIsbn(long bookIsbn){
+        Optional<Book> bookObj = this.bookRepo.findById(bookIsbn);
 
         if(bookObj.isPresent()){
             return bookObj.get();

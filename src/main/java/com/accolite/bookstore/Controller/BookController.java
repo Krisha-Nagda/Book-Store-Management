@@ -19,11 +19,11 @@ public class BookController {
     }
 
     @GetMapping("/books/{bookIsbn}")
-    private Book getBookById(@PathVariable long bookIsbn){
-        return this.bookService.getBookById(bookIsbn);
+    private Book getBookByIsbn(@PathVariable long bookIsbn){
+        return this.bookService.getBookByIsbn(bookIsbn);
     }
 
-    @PostMapping("/books")
+    @PostMapping("/book")
     private ResponseEntity<Book> addBook(@RequestBody Book book){
         return ResponseEntity.ok().body(this.bookService.addBook(book));
     }
