@@ -1,7 +1,9 @@
 package com.accolite.bookstore.Model;
 
+import com.sun.istack.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,8 +16,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long userId;
 
+    @NotNull
     private String userName;
+    @NotNull
     private String userEmail;
+    @NotNull
     private long userPhone;
     private int isSuspended;
 

@@ -14,7 +14,19 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserRepo userRepo;
+    public List<User> getUsers(){
+        return this.userRepo.findAll();
+    };
 
+    public User getUserById(long userId){
+        Optional<User> userObj = this.userRepo.findById(userId);
+
+        if(userObj.isPresent()){
+            return userObj.get();
+        }else{
+            throw new NullPointerException();
+        }
+    };
     public User createUser(User user){
         return userRepo.save(user);
     }
@@ -53,27 +65,4 @@ public class UserService {
         }
     }
 
-    public List<User> getUsers(){
-        return this.userRepo.findAll();
-    };
-
-    public User getUserById(long userId){
-        Optional<User> userObj = this.userRepo.findById(userId);
-
-        if(userObj.isPresent()){
-            return userObj.get();
-        }else{
-            throw new NullPointerException();
-        }
-    };
-
-//    void deleteUser(long userId){
-//        Optional<User> userObj = this.userRepo.findById(userId);
-//
-//        if(userObj.isPresent()){
-//            this.userRepo.deleteById(userId);
-//        }else{
-//            throw new NullPointerException();
-//        }
-//    };
 }
