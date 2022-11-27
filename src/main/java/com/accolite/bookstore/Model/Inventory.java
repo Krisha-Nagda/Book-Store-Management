@@ -16,6 +16,7 @@ public class Inventory {
     private long bookId;
     private String bookName;
     private int quantity;
+    private int price;
     @CreationTimestamp
     private Date createdAt;
 
@@ -52,5 +53,13 @@ public class Inventory {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
