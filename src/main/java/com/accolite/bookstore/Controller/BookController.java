@@ -18,7 +18,7 @@ public class BookController {
         return ResponseEntity.ok().body(this.bookService.getBooks());
     }
 
-    @GetMapping("/books/{bookIsbn}")
+    @GetMapping("/books/isbn/{bookIsbn}")
     private Book getBookByIsbn(@PathVariable long bookIsbn){
         return this.bookService.getBookByIsbn(bookIsbn);
     }
@@ -28,7 +28,7 @@ public class BookController {
         return ResponseEntity.ok().body(this.bookService.addBook(book));
     }
 
-    @PutMapping("/books/{bookIsbn}")
+    @PutMapping("/books/isbn/{bookIsbn}")
     private ResponseEntity<Book> updateBook(@PathVariable long bookIsbn, @RequestBody Book book){
         book.setBookIsbn(bookIsbn);
         return ResponseEntity.ok().body(this.bookService.updateBook(book));

@@ -25,6 +25,7 @@ public class Book {
     @NotNull
     private int bookPrice;
 
+    private int isRented;
     @CreationTimestamp
     private Date createdAt;
 
@@ -79,33 +80,11 @@ public class Book {
         this.bookPrice = bookPrice;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public int getIsRented() {
+        return isRented;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "bookIsbn=" + bookIsbn +
-                ", bookId=" + bookId +
-                ", bookName='" + bookName + '\'' +
-                ", bookAuthor='" + bookAuthor + '\'' +
-                ", bookCategory='" + bookCategory + '\'' +
-                ", bookPrice=" + bookPrice +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
+    public void setIsRented(int isRented) {
+        this.isRented = isRented;
     }
 }
