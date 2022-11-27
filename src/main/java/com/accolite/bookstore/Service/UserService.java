@@ -14,6 +14,8 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired WalletService walletService;
     public List<User> getUsers(){
         return this.userRepo.findAll();
     };
@@ -28,24 +30,19 @@ public class UserService {
         }
     };
     public User createUser(User user){
-        return userRepo.save(user);
+        User u = userRepo.save(user);
+        this.walletService.addWallet(u.getUserId());
+        return u;
     }
 
     public User updateUser(User user){
-        Optional<User> userObj = this.userRepo.findById((long) user.getUserId());
-
-        if(userObj.isPresent()){
-            User userUpdate = userObj.get();
-            userUpdate.setUserId(user.getUserId());
-            userUpdate.setUserName(user.getUserName());
-            userUpdate.setUserEmail(user.getUserEmail());
-            userUpdate.setUserPhone(user.getUserPhone());
-            userUpdate.setIsSuspended(user.getIsSuspended());
-            return this.userRepo.save(userUpdate);
-        }
-        else {
-            throw new NullPointerException();
-        }
+        User userUpdate = getUserById(user.getUserId());
+        userUpdate.setUserId(user.getUserId());
+        userUpdate.setUserName(user.getUserName());
+        userUpdate.setUserEmail(user.getUserEmail());
+        userUpdate.setUserPhone(user.getUserPhone());
+        userUpdate.setIsSuspended(user.getIsSuspended());
+        return this.userRepo.save(userUpdate);
     }
 
     public User suspendUser(User user){
@@ -63,6 +60,10 @@ public class UserService {
         else {
             throw new NullPointerException();
         }
+    }
+
+    public int isUserSuspended(long userId){
+        return getUserById(userId).getIsSuspended();
     }
 
 }
